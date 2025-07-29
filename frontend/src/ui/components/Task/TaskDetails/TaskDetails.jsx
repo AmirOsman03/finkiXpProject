@@ -1,7 +1,7 @@
 import React from 'react';
-import useTaskDetails from "../../../../hooks/useTaskDetails.js";
+import useTaskDetails from "/src/hooks/useTasks.js";
 import { FaBook, FaRegStar, FaRegListAlt } from 'react-icons/fa';
-import { MdOutlineDescription, MdOutlineLeaderboard } from 'react-icons/md';
+import { MdOutlineDescription } from 'react-icons/md';
 
 const difficultyColors = {
     Easy: 'bg-green-100 text-green-700',
