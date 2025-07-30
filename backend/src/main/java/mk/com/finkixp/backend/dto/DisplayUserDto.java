@@ -7,11 +7,12 @@ public record DisplayUserDto (
         String username,
         String name,
         String surname,
-        Role role
+        Role role,
+        Integer level
 ){
 
     public static DisplayUserDto from(User user){
-        return new DisplayUserDto(user.getUsername(), user.getName(), user.getSurname(), user.getRole());
+        return new DisplayUserDto(user.getUsername(), user.getName(), user.getSurname(), user.getRole(),user.getLevel());
     }
 
     public User toUser(){

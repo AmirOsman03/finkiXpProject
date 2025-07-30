@@ -1,7 +1,6 @@
 package mk.com.finkixp.backend.dto;
 
 import mk.com.finkixp.backend.model.domain.Task;
-import mk.com.finkixp.backend.model.domain.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +25,7 @@ public record DisplayTaskDto(
         );
     }
 
-    public static List<DisplayTaskDto> fromUsers(List<Task> tasks) {
+    public static List<DisplayTaskDto> fromTasks(List<Task> tasks) {
         return tasks.stream().map(DisplayTaskDto::fromUser).collect(Collectors.toList());
     }
 
