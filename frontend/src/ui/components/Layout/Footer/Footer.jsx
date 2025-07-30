@@ -28,7 +28,7 @@ const Footer = () => {
                         <Link to="/" className="hover:text-white transition-colors">
                             Почетна
                         </Link>
-                        <Link to="/subjects" className="hover:text-white transition-colors">
+                        <Link to="/subject" className="hover:text-white transition-colors">
                             Предмети
                         </Link>
                         <Link to="/tasks" className="hover:text-white transition-colors">
