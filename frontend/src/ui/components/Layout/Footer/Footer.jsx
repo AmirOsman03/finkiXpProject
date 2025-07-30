@@ -1,199 +1,76 @@
 import React from 'react';
-import {FaFacebook, FaGithub, FaInstagram, FaTwitter} from "react-icons/fa";
+import {FaFacebook, FaGithub, FaInstagram, FaGraduationCap} from "react-icons/fa";
 import {Link} from "react-router";
 
 const Footer = () => {
     return (
-        <footer className="bg-blue-900">
-            <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                    <div>
-                        <div>
-                            {/* Logo */}
-                            <div className="flex items-center">
-                                <Link to="/" className="text-white font-bold text-xl hover:opacity-75">
-                                    Finki XP
-                                </Link>
-                            </div>
+        <footer className="bg-gradient-to-r from-blue-900 to-purple-900">
+            <div className="mx-auto max-w-6xl px-6 py-12">
+                {/* Main Footer Content */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                    {/* Logo and Description */}
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 bg-white/10 rounded-full">
+                            <FaGraduationCap className="text-white text-xl"/>
                         </div>
-
-                        <p className="mt-4 max-w-xs text-gray-200">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non cupiditate quae nam
-                            molestias.
-                        </p>
-
-                        <ul className="mt-8 flex gap-6 text-white">
-                            <li>
-                                <a
-                                    href="#"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                    className="text-white-700 transition hover:opacity-75 dark:text-gray-200"
-                                >
-                                    <span className="sr-only">Facebook</span>
-                                    <FaFacebook className={"text-2xl"}/>
-                                </a>
-
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                    className="text-white-700 transition hover:opacity-75 dark:text-gray-200"
-                                >
-                                    <span className="sr-only">Instagram</span>
-                                    <FaInstagram className={"text-2xl"}/>
-                                </a>
-
-                            </li>
-
-                            <li>
-                                <a
-                                    href="https://github.com/AmirOsman03"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                    className="text-white transition hover:opacity-75 dark:text-gray-200"
-                                >
-                                    <span className="sr-only">GitHub</span>
-                                    <FaGithub className={"text-2xl"}/>
-                                </a>
-                            </li>
-                        </ul>
+                        <div>
+                            <Link to="/" className="text-white font-bold text-xl hover:opacity-80 transition-opacity">
+                                Finki XP
+                            </Link>
+                            <p className="text-gray-300 text-sm mt-1">
+                                LevelUp – Учиш. Играј. Напредувај.
+                            </p>
+                        </div>
                     </div>
 
-                    {/* Services */}
-                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4 text-white">
-                        <div>
-                            <p className="text-xl text-white">Services</p>
+                    {/* Navigation Links */}
+                    <div className="flex gap-8 text-gray-300">
+                        <Link to="/" className="hover:text-white transition-colors">
+                            Почетна
+                        </Link>
+                        <Link to="/subjects" className="hover:text-white transition-colors">
+                            Предмети
+                        </Link>
+                        <Link to="/tasks" className="hover:text-white transition-colors">
+                            Задачи
+                        </Link>
+                    </div>
 
-                            <ul className="mt-6 space-y-4 text-sm text-white">
-                                <li>
-                                    <a href="#" className="text-gray-200 transition hover:opacity-75">
-                                        1on1 Coaching
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-white transition hover:opacity-75">
-                                        Company Review
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-white transition hover:opacity-75">
-                                        Accounts Review
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-white transition hover:opacity-75">
-                                        HR Consulting
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-white transition hover:opacity-75">
-                                        SEO Optimisation
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        {/* Company */}
-                        <div>
-                            <p className="text-lg text-white">Company</p>
-
-                            <ul className="mt-6 space-y-4 text-sm">
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        About
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Meet the Team
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Accounts Review
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Helpful Links */}
-                        <div>
-                            <p className="text-lg text-white">Helpful Links</p>
-
-                            <ul className="mt-6 space-y-4 text-sm">
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Contact
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        FAQs
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Live Chat
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Legal */}
-                        <div>
-                            <p className="text-lg text-white">Legal</p>
-
-                            <ul className="mt-6 space-y-4 text-sm">
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Accessibility
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Returns Policy
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Refund Policy
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                       className="text-gray-200 transition hover:opacity-75">
-                                        Hiring-3 Statistics
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    {/* Social Links */}
+                    <div className="flex gap-4">
+                        <a
+                            href="#"
+                            className="text-gray-300 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+                            title="Facebook"
+                        >
+                            <FaFacebook className="text-xl"/>
+                        </a>
+                        <a
+                            href="#"
+                            className="text-gray-300 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+                            title="Instagram"
+                        >
+                            <FaInstagram className="text-xl"/>
+                        </a>
+                        <a
+                            href="https://github.com/AmirOsman03"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-gray-300 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+                            title="GitHub"
+                        >
+                            <FaGithub className="text-xl"/>
+                        </a>
                     </div>
                 </div>
 
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                    &copy; 2022. Company Name. All rights reserved.
-                </p>
+                {/* Divider */}
+                <div className="border-t border-white/20 my-8"></div>
+
+                {/* Copyright */}
+                <div className="text-center text-gray-400 text-sm">
+                    <p>&copy; 2024 Finki XP. Сите права се задржани.</p>
+                </div>
             </div>
         </footer>
     );
