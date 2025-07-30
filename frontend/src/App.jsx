@@ -5,6 +5,7 @@ import TasksPage from "./ui/pages/TasksPage/TasksPage.jsx";
 import Layout from "./ui/components/Layout/Layout/Layout.jsx";
 import TaskDetails from "../src/ui/components/Task/TaskDetails/TaskDetails.jsx";
 import SubjectsPage from "./ui/pages/SubjectsPage/SubjectsPage.jsx";
+import SubjectDetails from "./ui/components/Subject/SubjectDetails/SubjectDetails.jsx";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                     <Route path="tasks" element={<TasksPage/>}/>
                     <Route path="tasks/:id" element={<TaskDetails/>}/>
                     <Route path="subject" element={<SubjectsPage/>}/>
+                    <Route path="subject/:id" element={<SubjectDetails/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
