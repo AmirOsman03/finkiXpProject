@@ -21,7 +21,7 @@ public class DataInitializer {
         this.passwordEncoder = passwordEncoder;
     }
 
-      // @PostConstruct
+//    @PostConstruct
     public void init() {
         User admin = new User(
                 "admin",
