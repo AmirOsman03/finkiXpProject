@@ -26,6 +26,8 @@ public class User implements UserDetails {
 
     private String surname;
 
+    private Integer level;
+
     private boolean isAccountNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isCredentialsNonExpired = true;
@@ -46,6 +48,7 @@ public class User implements UserDetails {
         this.name = name;
         this.surname = surname;
         this.role = role;
+        this.level = 1;
     }
 
     public User(String username, String password, String name, String surname) {
@@ -54,6 +57,7 @@ public class User implements UserDetails {
         this.name = name;
         this.surname = surname;
         this.role = Role.ROLE_USER;
+        this.level = 1;
     }
 
     public User(UserDetails userDetails) {
@@ -146,5 +150,13 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

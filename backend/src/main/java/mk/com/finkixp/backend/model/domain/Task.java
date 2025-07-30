@@ -31,7 +31,7 @@ public class Task {
 
         this.name = name;
         this.description = description;
-        this.completed = completed;
+        this.completed = false;
         this.subject = subject;
 
     }
@@ -40,7 +40,7 @@ public class Task {
 
         this.name = name;
         this.description = description;
-        this.completed = completed;
+        this.completed = false;
         this.subject = subject;
         this.user = user;
     }

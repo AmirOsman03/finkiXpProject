@@ -51,15 +51,15 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<User> getCurrentUser(Principal principal) {
+    public ResponseEntity<DisplayUserDto> getCurrentUser(Principal principal) {
         String username = principal.getName();
-        Optional<User> userOpt = userRepository.findByUsername(username);
+        Optional<DisplayUserDto> userOpt = userApplicationService.findByUsername(username);
 
         if (userOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        User user = userOpt.get();
+        DisplayUserDto user = userOpt.get();
         return ResponseEntity.ok(user);
     }
 

@@ -27,7 +27,7 @@ public class TaskApplicationServiceImpl implements TaskApplicationService {
 
     @Override
     public List<DisplayTaskDto> findAllTasks() {
-        return DisplayTaskDto.fromUsers(taskService.findAll());
+        return DisplayTaskDto.fromTasks(taskService.findAll());
     }
 
     @Override
