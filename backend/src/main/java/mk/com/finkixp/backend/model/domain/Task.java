@@ -16,6 +16,7 @@ public class Task {
 
     private String name;
 
+    @Column(length = 1000)
     private String description;
 
     private boolean completed;
