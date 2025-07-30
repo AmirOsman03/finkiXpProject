@@ -7,6 +7,10 @@ const pages = [
         path: '/',
     },
     {
+        name: 'Subjects',
+        path: '/subject',
+    },
+    {
         name: 'Tasks',
         path: '/tasks',
     },
