@@ -1,7 +1,6 @@
 import React from 'react';
 import {useNavigate} from "react-router";
 import {FaBook, FaRegStar} from 'react-icons/fa';
-import {MdOutlineLeaderboard} from 'react-icons/md';
 
 
 const TaskCard = ({task}) => {
