@@ -6,11 +6,13 @@ import Layout from "./ui/components/Layout/Layout/Layout.jsx";
 import TaskDetails from "../src/ui/components/Task/TaskDetails/TaskDetails.jsx";
 import SubjectsPage from "./ui/pages/SubjectsPage/SubjectsPage.jsx";
 import SubjectDetails from "./ui/components/Subject/SubjectDetails/SubjectDetails.jsx";
+import Login from "./ui/components/Auth/Login/Login.jsx";
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/login" element={<Login/>}/>
                 <Route path={"/"} element={<Layout/>}>
                     <Route index element={<HomePage/>}/>
                     <Route path="tasks" element={<TasksPage/>}/>
