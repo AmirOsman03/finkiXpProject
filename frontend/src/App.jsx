@@ -7,6 +7,7 @@ import TaskDetails from "../src/ui/components/Task/TaskDetails/TaskDetails.jsx";
 import SubjectsPage from "./ui/pages/SubjectsPage/SubjectsPage.jsx";
 import SubjectDetails from "./ui/components/Subject/SubjectDetails/SubjectDetails.jsx";
 import Login from "./ui/components/Auth/Login/Login.jsx";
+import LeaderboardPage from "./ui/pages/LeaderboardPage/LeaderboardPage.jsx";
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="tasks/:id" element={<TaskDetails/>}/>
                     <Route path="subject" element={<SubjectsPage/>}/>
                     <Route path="subject/:id" element={<SubjectDetails/>}/>
+                    <Route path="leaderboard" element={<LeaderboardPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
