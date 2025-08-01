@@ -8,6 +8,11 @@ const userRepository = {
         return await axiosInstance.post('/user/register', data)
     },
     // TODO: Logout
+
+
+    getLeaderboard: async () => {
+        return await axiosInstance.get('/user/leaderboard')
+    },
 }
 
 export default userRepository;
