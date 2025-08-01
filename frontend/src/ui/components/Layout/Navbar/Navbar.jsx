@@ -16,6 +16,10 @@ const pages = [
         name: 'Tasks',
         path: '/tasks',
     },
+    {
+        name: 'Leaderboard',
+        path: '/leaderboard',
+    }
 ]
 
 const Navbar = () => {
