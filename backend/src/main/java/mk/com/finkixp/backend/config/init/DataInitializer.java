@@ -1,5 +1,6 @@
 package mk.com.finkixp.backend.config.init;
 
+import jakarta.annotation.PostConstruct;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.model.enums.Role;
 import mk.com.finkixp.backend.repository.UserRepository;
