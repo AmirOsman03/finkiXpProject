@@ -1,10 +1,6 @@
 package mk.com.finkixp.backend.web.controllers;
 
-import mk.com.finkixp.backend.dto.CreateUserDto;
-import mk.com.finkixp.backend.dto.DisplayUserDto;
-import mk.com.finkixp.backend.dto.LoginResponseDto;
-import mk.com.finkixp.backend.dto.LoginUserDto;
-import mk.com.finkixp.backend.model.domain.User;
+import mk.com.finkixp.backend.dto.*;
 import mk.com.finkixp.backend.model.exception.InvalidArgumentsException;
 import mk.com.finkixp.backend.model.exception.InvalidUserCredentialsException;
 import mk.com.finkixp.backend.model.exception.PasswordsDoNotMatchException;
@@ -14,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -61,6 +58,11 @@ public class UserController {
 
         DisplayUserDto user = userOpt.get();
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/leaderboard")
+    public ResponseEntity<List<UserLevelDto>> getLeaderboard() {
+        return ResponseEntity.ok(userApplicationService.findTop10ByLevel());
     }
 
 }
