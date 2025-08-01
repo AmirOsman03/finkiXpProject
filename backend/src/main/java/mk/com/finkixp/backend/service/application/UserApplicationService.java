@@ -1,11 +1,9 @@
 package mk.com.finkixp.backend.service.application;
 
 
-import mk.com.finkixp.backend.dto.CreateUserDto;
-import mk.com.finkixp.backend.dto.DisplayUserDto;
-import mk.com.finkixp.backend.dto.LoginResponseDto;
-import mk.com.finkixp.backend.dto.LoginUserDto;
+import mk.com.finkixp.backend.dto.*;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserApplicationService {
@@ -15,5 +13,7 @@ public interface UserApplicationService {
     Optional<LoginResponseDto> login(LoginUserDto loginUserDto);
 
     Optional<DisplayUserDto> findByUsername(String username);
+
+    List<UserLevelDto> findTop10ByLevel();
 
 }

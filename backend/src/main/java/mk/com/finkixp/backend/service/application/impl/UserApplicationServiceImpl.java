@@ -1,10 +1,7 @@
 package mk.com.finkixp.backend.service.application.impl;
 
 import lombok.AllArgsConstructor;
-import mk.com.finkixp.backend.dto.CreateUserDto;
-import mk.com.finkixp.backend.dto.DisplayUserDto;
-import mk.com.finkixp.backend.dto.LoginResponseDto;
-import mk.com.finkixp.backend.dto.LoginUserDto;
+import mk.com.finkixp.backend.dto.*;
 import mk.com.finkixp.backend.helper.JwtHelper;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.repository.UserRepository;
@@ -13,14 +10,17 @@ import mk.com.finkixp.backend.service.domain.UserService;
 import mk.com.finkixp.backend.web.filter.JwtFilter;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserApplicationServiceImpl implements UserApplicationService {
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public UserApplicationServiceImpl(UserService userService, JwtHelper jwtHelper) {
+    public UserApplicationServiceImpl(UserService userService, UserRepository userRepository, JwtHelper jwtHelper) {
         this.userService = userService;
+        this.userRepository = userRepository;
         this.jwtHelper = jwtHelper;
     }
 
@@ -58,4 +58,10 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     public Optional<DisplayUserDto> findByUsername(String username) {
         return Optional.of(DisplayUserDto.from(userService.findByUsername(username)));
     }
+
+    @Override
+    public List<UserLevelDto> findTop10ByLevel() {
+        return userRepository.findTop10ByLevel();
+    }
+
 }
