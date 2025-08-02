@@ -26,13 +26,19 @@ const Footer = () => {
                     {/* Navigation Links */}
                     <div className="flex gap-8 text-gray-300">
                         <Link to="/" className="hover:text-white transition-colors">
-                            Почетна
+                            Home
                         </Link>
                         <Link to="/subject" className="hover:text-white transition-colors">
-                            Предмети
+                            Subjects
                         </Link>
                         <Link to="/tasks" className="hover:text-white transition-colors">
-                            Задачи
+                            Tasks
+                        </Link>
+                        <Link to="/leaderboard" className="hover:text-white transition-colors">
+                            Leaderboard
+                        </Link>
+                        <Link to="/aboutUs" className="hover:text-white transition-colors">
+                            About Us
                         </Link>
                     </div>
 
@@ -53,7 +59,7 @@ const Footer = () => {
                             <FaInstagram className="text-xl"/>
                         </a>
                         <a
-                            href="https://github.com/AmirOsman03"
+                            href="https://github.com/Isen-Osman/FinkiXP"
                             target="_blank"
                             rel="noreferrer"
                             className="text-gray-300 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
