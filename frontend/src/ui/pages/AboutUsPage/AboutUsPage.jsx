@@ -13,7 +13,7 @@ const AboutUsPage = () => {
         },
         {
             name: "Amir Osman",
-            role: "Software Engineering Student",
+            role: "Software Engineering",
             avatar: "https://avatars.githubusercontent.com/u/151637627?v=4",
             description: "Passionate about full-stack development, clean code, and building meaningful software.",
             github: "https://github.com/AmirOsman03"
