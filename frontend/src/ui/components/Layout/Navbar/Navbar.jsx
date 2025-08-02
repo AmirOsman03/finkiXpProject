@@ -19,7 +19,11 @@ const pages = [
     {
         name: 'Leaderboard',
         path: '/leaderboard',
-    }
+    },
+    {
+        name: 'About Us',
+        path: "/aboutUs",
+    },
 ]
 
 const Navbar = () => {
