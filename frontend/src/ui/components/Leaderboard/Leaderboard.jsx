@@ -42,7 +42,7 @@ const Leaderboard = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4 font-sans">
+        <div className="flex items-center justify-center p-4 font-sans">
             <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-2xl animate-fade-in">
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Leaderboard</h1>

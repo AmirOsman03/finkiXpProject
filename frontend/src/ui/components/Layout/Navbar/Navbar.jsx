@@ -19,7 +19,11 @@ const pages = [
     {
         name: 'Leaderboard',
         path: '/leaderboard',
-    }
+    },
+    {
+        name: 'About Us',
+        path: "/aboutUs",
+    },
 ]
 
 const Navbar = () => {
@@ -36,7 +40,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="mx-3 my-3 rounded-full shadow-lg bg-white/80 backdrop-blur-md border border-gray-100 flex items-center px-6 py-3 min-h-[64px]">
+        <nav className="mx-3 mt-3 rounded-full shadow-lg bg-white/80 backdrop-blur-md border border-gray-100 flex items-center px-6 py-3 min-h-[64px]">
             {/* Logo */}
             <div className="flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full p-3 px-6 shadow-lg transition-all duration-300 transform">
                 <div className="flex items-center gap-2">
