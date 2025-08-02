@@ -3,6 +3,13 @@ import {useParams} from "react-router";
 import useSubjectDetails from "../../../../hooks/useSubjectDetails.js";
 import {FaGraduationCap, FaRegStar, FaBook, FaRegListAlt} from "react-icons/fa";
 import {MdOutlineDescription} from "react-icons/md";
+import Breadcrumb from "../../Layout/Breadcrumb/Breadcrump.jsx";
+
+const breadcrumbItems = [
+    { label: "Home", to: "/" },
+    { label: "Subjects", to: "/subject" },
+    { label: "Subject Details" }
+];
 
 const SubjectDetails = () => {
     const {id} = useParams();
@@ -21,7 +28,10 @@ const SubjectDetails = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-100 py-8 px-4">
+        <div className="my-5 mb-10">
+            <div className="container mx-auto px-5">
+                <Breadcrumb items={breadcrumbItems} />
+            </div>
             <div className="max-w-6xl mx-auto">
                 {/* Subject Header */}
                 <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 mb-8 border border-white/40">
