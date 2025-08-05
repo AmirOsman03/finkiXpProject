@@ -1,20 +1,10 @@
 import React, {useState} from 'react';
-import './AddSubjectDialog.css';
 import {BiExit} from "react-icons/bi";
 
-const initialFormData = {
-    name: '',
-};
-
-const AddSubjectDialog = ({open, onClose, onCreate}) => {
-    const [formData, setFormData] = useState(initialFormData);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onCreate(formData);
-        setFormData(initialFormData);
-        onClose();
-    };
+const EditSubjectDialog = ({open, onClose, onUpdate, subject}) => {
+    const [formData, setFormData] = useState({
+        name: subject.name,
+    });
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -22,11 +12,19 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
     };
 
     const handleClose = () => {
-        setFormData(initialFormData);
         onClose();
     };
 
-    if (!open) return null;
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('Updating subject with id:', subject.id);
+        onUpdate(subject.id, formData);
+        onClose();
+    }
+
+    if (!open) {
+        return null;
+    }
 
     return (
         <div className="dialog-overlay" onClick={handleClose}>
@@ -71,16 +69,17 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
                             </button>
                             <button
                                 type="submit"
-                                className="btn bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full flex justify-center hover:scale-105"
+                                className="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full flex justify-center hover:scale-105"
                             >
-                                Create
+                                Edit
                             </button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
     );
 };
 
-export default AddSubjectDialog;
+export default EditSubjectDialog;
