@@ -2,6 +2,8 @@ package mk.com.finkixp.backend.model.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,7 +29,7 @@ public class Subject {
 
     // Еден предмет има повеќе задачи
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
+    private List<Task> tasks = new ArrayList<>();
 
     public Subject(String name) {
         this.name = name;

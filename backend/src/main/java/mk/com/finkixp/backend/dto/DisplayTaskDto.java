@@ -26,6 +26,9 @@ public record DisplayTaskDto(
     }
 
     public static List<DisplayTaskDto> fromTasks(List<Task> tasks) {
+        if (tasks == null) {
+            return List.of();
+        }
         return tasks.stream().map(DisplayTaskDto::fromUser).collect(Collectors.toList());
     }
 
