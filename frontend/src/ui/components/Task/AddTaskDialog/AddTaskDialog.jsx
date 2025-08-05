@@ -1,15 +1,24 @@
 import React, {useState} from 'react';
-import './AddSubjectDialog.css';
+import './AddTaskDialog.css';
 
 const initialFormData = {
     name: '',
-};
+    description: '',
+    subjectId: '',
+}
 
-const AddSubjectDialog = ({open, onClose, onCreate}) => {
+const AddTaskDialog = ({subjects, open, onClose, onCreate}) => {
     const [formData, setFormData] = useState(initialFormData);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        
+        if (!formData.name || !formData.subjectId) {
+            alert('Please fill in all required fields');
+            return;
+        }
+
+        formData.subjectId = parseInt(formData.subjectId);
         onCreate(formData);
         setFormData(formData);
         onClose();
@@ -31,7 +40,7 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
         <div className="dialog-overlay" onClick={handleClose}>
             <div className="dialog-content" onClick={(e) => e.stopPropagation()}>
                 <div className="dialog-header">
-                    <h2 className="dialog-title">Add New Subject</h2>
+                    <h2 className="dialog-title">Add New Task</h2>
                     <button
                         className="dialog-close-btn"
                         onClick={handleClose}
@@ -44,7 +53,7 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
                 <form onSubmit={handleSubmit} className="dialog-form">
                     <div className="form-group">
                         <label htmlFor="name" className="form-label">
-                            Subject Name *
+                            Task Name *
                         </label>
                         <input
                             type="text"
@@ -53,9 +62,45 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
                             value={formData.name}
                             onChange={handleChange}
                             className="form-input"
-                            placeholder="Enter subject name"
+                            placeholder="Enter task name"
                             required
                         />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="description" className="form-label">
+                            Description
+                        </label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            className="form-textarea"
+                            placeholder="Enter task description"
+                            rows="3"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="subject" className="form-label">
+                            Subject *
+                        </label>
+                        <select
+                            id="subjectId"
+                            name="subjectId"
+                            value={formData.subjectId}
+                            onChange={handleChange}
+                            className="form-input"
+                            required
+                        >
+                            <option value="">Select a subject</option>
+                            {subjects.map((subject) => (
+                                <option key={subject.id} value={subject.id}>
+                                    {subject.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className="dialog-actions">
@@ -70,7 +115,7 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
                             type="submit"
                             className="btn btn-primary"
                         >
-                            Create Subject
+                            Create Task
                         </button>
                     </div>
                 </form>
@@ -79,4 +124,4 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
     );
 };
 
-export default AddSubjectDialog;
+export default AddTaskDialog;

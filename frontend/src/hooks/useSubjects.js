@@ -36,7 +36,7 @@ const UseSubjects = () => {
             });
     }, [fetchSubjects]);
 
-    const onEdit = useCallback((id, data) => {
+    const onUpdate = useCallback((id, data) => {
         subjectRepository
             .edit(id, data)
             .then(() => {
@@ -61,13 +61,13 @@ const UseSubjects = () => {
     }, [fetchSubjects]);
 
     useEffect(() => {
-        fetchSubjects()
+        fetchSubjects();
     }, [fetchSubjects]);
 
     return {
         ...state,
         onCreate: onCreate,
-        onEdit: onEdit,
+        onUpdate: onUpdate,
         onDelete: onDelete,
     };
 };

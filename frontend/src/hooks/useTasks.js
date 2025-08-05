@@ -36,7 +36,7 @@ const UseTasks = () => {
             });
     }, [fetchTasks]);
 
-    const onEdit = useCallback((id, data) => {
+    const onUpdate = useCallback((id, data) => {
         taskRepository
             .edit(id, data)
             .then(() => {
@@ -68,7 +68,7 @@ const UseTasks = () => {
     return {
         ...state,
         onCreate: onCreate,
-        onEdit: onEdit,
+        onUpdate: onUpdate,
         onDelete: onDelete,
     };
 };
