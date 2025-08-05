@@ -57,7 +57,7 @@ const Leaderboard = () => {
                     ) : (
                         users.map((user, index) => (
                             <div 
-                                key={user.id} 
+                                key={user.username}
                                 className={`flex items-center justify-between p-5 rounded-2xl border-2 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg ${getRankClass(index)}`}
                             >
                                 <div className="flex items-center gap-4">

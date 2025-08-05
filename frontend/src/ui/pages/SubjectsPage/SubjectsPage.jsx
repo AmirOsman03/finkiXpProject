@@ -7,6 +7,7 @@ import AddSubjectDialog from "../../components/Subject/AddSubjectDialog/AddSubje
 const SubjectsPage = () => {
     const { subjects, loading, onCreate, onUpdate, onDelete } = useSubjects();
     const [AddSubjectDialogOpen, setAddSubjectDialogOpen] = useState(false);
+
     if (loading) {
         return (
             <div className="flex justify-center items-center min-h-[40vh]">
