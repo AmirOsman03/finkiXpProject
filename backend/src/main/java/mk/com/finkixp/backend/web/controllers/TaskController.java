@@ -4,7 +4,6 @@ import mk.com.finkixp.backend.dto.CreateTaskDto;
 import mk.com.finkixp.backend.dto.DisplayTaskDto;
 import mk.com.finkixp.backend.model.domain.Subject;
 import mk.com.finkixp.backend.model.domain.User;
-import mk.com.finkixp.backend.repository.UserRepository;
 import mk.com.finkixp.backend.service.application.TaskApplicationService;
 import mk.com.finkixp.backend.service.domain.SubjectService;
 import mk.com.finkixp.backend.service.domain.UserService;
@@ -22,13 +21,15 @@ public class TaskController {
     private final TaskApplicationService taskApplicationService;
     private final SubjectService subjectService;
     private final UserService userService;
-    private final UserRepository userRepository;
 
-    public TaskController(TaskApplicationService taskApplicationService, SubjectService subjectService, UserService userService, UserRepository userRepository) {
+    public TaskController(
+            TaskApplicationService taskApplicationService,
+            SubjectService subjectService,
+            UserService userService
+    ) {
         this.taskApplicationService = taskApplicationService;
         this.subjectService = subjectService;
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -41,12 +42,13 @@ public class TaskController {
         return taskApplicationService.findTaskById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-
     @PutMapping("/edit/{id}")
-    public ResponseEntity<DisplayTaskDto> update(@PathVariable Long id, @RequestBody CreateTaskDto createTaskDto) {
+    public ResponseEntity<DisplayTaskDto> update(
+            @PathVariable Long id,
+            @RequestBody CreateTaskDto createTaskDto
+    ) {
         return taskApplicationService.update(id, createTaskDto).map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
-
     }
 
     @DeleteMapping("/delete/{id}")
@@ -64,12 +66,9 @@ public class TaskController {
             @AuthenticationPrincipal UserDetails userDetails
     ) {
         User user = userService.findByUsername(userDetails.getUsername());
-
         Subject subject = subjectService.findById(createTaskDto.subjectId())
                 .orElseThrow(() -> new RuntimeException("Subject not found"));
-
         DisplayTaskDto createdTask = taskApplicationService.createTask(createTaskDto, subject, user);
-
         return ResponseEntity.ok(createdTask);
     }
 }
