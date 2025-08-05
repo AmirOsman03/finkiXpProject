@@ -37,7 +37,7 @@ public class Task {
 
     }
 
-    public Task(String name, String description, boolean completed, Subject subject,User user) {
+    public Task(String name, String description, Subject subject,User user) {
 
         this.name = name;
         this.description = description;

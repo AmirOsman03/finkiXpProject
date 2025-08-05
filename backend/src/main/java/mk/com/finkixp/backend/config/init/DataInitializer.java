@@ -11,7 +11,6 @@ import mk.com.finkixp.backend.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -32,7 +31,7 @@ public class DataInitializer {
         this.taskRepository = taskRepository;
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
         User admin = new User(
                 "admin",
@@ -76,7 +75,6 @@ public class DataInitializer {
         Task oopTask = new Task(
                 "Наследување во Java",
                 "Напиши пример за наследување и полиморфизам во ООП",
-                false,
                 oop,
                 admin
         );
@@ -84,7 +82,6 @@ public class DataInitializer {
         Task aokTask = new Task(
                 "Вежби за машински јазик",
                 "Реши 5 задачи за адресирање и инструкции",
-                false,
                 aok,
                 admin
         );
@@ -92,7 +89,6 @@ public class DataInitializer {
         Task spTask = new Task(
                 "Процеси и нишки",
                 "Направи кратка презентација за процеси и нитки во СП",
-                false,
                 sp,
                 admin
         );
@@ -100,7 +96,6 @@ public class DataInitializer {
         Task osTask = new Task(
                 "Вовед во Linux",
                 "Инсталирај виртуелна машина со Ubuntu и пробај 10 основни команди",
-                false,
                 os,
                 admin
         );
@@ -108,7 +103,6 @@ public class DataInitializer {
         Task bnpTask = new Task(
                 "Финансиска анализа",
                 "Реши задача за биланс на состојба од минат испит",
-                false,
                 bnp,
                 admin
         );
@@ -116,7 +110,6 @@ public class DataInitializer {
         Task vpTask = new Task(
                 "Генератор на слики",
                 "Креирај мал проект во OpenCV за препознавање форми",
-                false,
                 vp,
                 admin
         );
@@ -124,7 +117,6 @@ public class DataInitializer {
         Task nvdTask = new Task(
                 "Мини вежба со WebGL",
                 "Пробај едноставен пример со WebGL во браузер",
-                false,
                 nvd,
                 admin
         );
@@ -132,7 +124,6 @@ public class DataInitializer {
         Task dnickTask = new Task(
                 "Алгоритам за распоредување",
                 "Имплементирај Round-Robin распоредувач",
-                false,
                 dnick,
                 admin
         );
@@ -140,7 +131,6 @@ public class DataInitializer {
         Task emtTask = new Task(
                 "Тестирање на аналогно коло",
                 "Симулирај RC филтер во Multisim",
-                false,
                 emt,
                 admin
         );

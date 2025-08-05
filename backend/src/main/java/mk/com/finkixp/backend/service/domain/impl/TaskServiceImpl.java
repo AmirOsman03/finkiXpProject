@@ -1,6 +1,5 @@
 package mk.com.finkixp.backend.service.domain.impl;
 
-import lombok.AllArgsConstructor;
 import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.repository.TaskRepository;
 import mk.com.finkixp.backend.service.domain.TaskService;

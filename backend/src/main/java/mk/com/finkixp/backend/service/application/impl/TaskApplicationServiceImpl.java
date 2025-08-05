@@ -6,9 +6,7 @@ import mk.com.finkixp.backend.model.domain.Subject;
 import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.service.application.TaskApplicationService;
-import mk.com.finkixp.backend.service.domain.SubjectService;
 import mk.com.finkixp.backend.service.domain.TaskService;
-import mk.com.finkixp.backend.service.domain.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +39,6 @@ public class TaskApplicationServiceImpl implements TaskApplicationService {
                 ((existingTask) -> {
                     existingTask.setName(createTaskDto.name());
                     existingTask.setDescription(createTaskDto.description());
-                    existingTask.setCompleted(createTaskDto.completed());
                     Task task = taskService.save(existingTask);
                     return DisplayTaskDto.fromUser(task);
                 })
