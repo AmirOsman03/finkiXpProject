@@ -10,6 +10,7 @@ const UseSubjects = () => {
     const [state, setState] = useState(initialState);
 
     const fetchSubjects = useCallback(() => {
+        setState(initialState);
         subjectRepository
             .findAll()
             .then((response) => {
