@@ -5,7 +5,7 @@ import { FaPlus } from 'react-icons/fa';
 import AddSubjectDialog from "../../components/Subject/AddSubjectDialog/AddSubjectDialog.jsx";
 
 const SubjectsPage = () => {
-    const { subjects, loading, onCreate, onEdit, onDelete } = useSubjects();
+    const { subjects, loading, onCreate, onUpdate, onDelete } = useSubjects();
     const [AddSubjectDialogOpen, setAddSubjectDialogOpen] = useState(false);
     if (loading) {
         return (
@@ -32,7 +32,7 @@ const SubjectsPage = () => {
                     subjects={subjects}
                     onCreate={onCreate}
                     onDelete={onDelete}
-                    onEdit={onEdit}
+                    onUpdate={onUpdate}
                 />
             </div>
             <AddSubjectDialog

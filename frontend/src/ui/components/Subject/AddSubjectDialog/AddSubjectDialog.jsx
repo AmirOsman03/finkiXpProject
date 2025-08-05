@@ -8,7 +8,8 @@ const initialFormData = {
 const AddSubjectDialog = ({open, onClose, onCreate}) => {
     const [formData, setFormData] = useState(initialFormData);
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         onCreate(formData);
         setFormData(formData);
         onClose();
@@ -68,7 +69,6 @@ const AddSubjectDialog = ({open, onClose, onCreate}) => {
                         <button
                             type="submit"
                             className="btn btn-primary"
-                            onClick={handleSubmit}
                         >
                             Create Subject
                         </button>

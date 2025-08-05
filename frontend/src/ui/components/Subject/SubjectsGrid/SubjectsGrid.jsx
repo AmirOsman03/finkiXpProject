@@ -1,6 +1,6 @@
 import SubjectCard from "../SubjectCard/SubjectCard.jsx";
 
-const SubjectsGrid = ({subjects, onDelete, onEdit}) => {
+const SubjectsGrid = ({subjects, onDelete, onUpdate}) => {
     return (
         <div className={"grid grid-cols-4 gap-5"}>
             {subjects.map((subject) => (
@@ -8,7 +8,7 @@ const SubjectsGrid = ({subjects, onDelete, onEdit}) => {
                     <SubjectCard
                         subject={subject}
                         onDelete={onDelete}
-                        onEdit={onEdit}
+                        onUpdate={onUpdate}
                     />
                 </div>
             ))}
