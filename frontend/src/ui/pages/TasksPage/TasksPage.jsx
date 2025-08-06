@@ -35,6 +35,7 @@ const TasksPage = () => {
                     tasks={tasks}
                     onDelete={onDelete}
                     onUpdate={onUpdate}
+                    subjects={subjects}
                 />
             </div>
             <AddTaskDialog
