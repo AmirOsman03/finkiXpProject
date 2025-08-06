@@ -7,9 +7,9 @@ const userRepository = {
     register: async (data) => {
         return await axiosInstance.post('/user/register', data)
     },
-    // TODO: Logout
-
-
+    me: async () => {
+      return await axiosInstance.get('/user/me')
+    },
     getLeaderboard: async () => {
         return await axiosInstance.get('/user/leaderboard')
     },
