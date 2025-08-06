@@ -9,6 +9,7 @@ import SubjectDetails from "./ui/components/Subject/SubjectDetails/SubjectDetail
 import Login from "./ui/components/Auth/Login/Login.jsx";
 import LeaderboardPage from "./ui/pages/LeaderboardPage/LeaderboardPage.jsx";
 import AboutUsPage from "./ui/pages/AboutUsPage/AboutUsPage.jsx";
+import MePage from "./ui/pages/MePage/MePage.jsx";
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                     <Route path="subject/:id" element={<SubjectDetails/>}/>
                     <Route path="leaderboard" element={<LeaderboardPage/>}/>
                     <Route path="aboutUs" element={<AboutUsPage/>}/>
+                    <Route path="me" element={<MePage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
