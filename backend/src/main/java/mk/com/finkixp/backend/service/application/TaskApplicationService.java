@@ -3,6 +3,7 @@ package mk.com.finkixp.backend.service.application;
 import mk.com.finkixp.backend.dto.CreateTaskDto;
 import mk.com.finkixp.backend.dto.DisplayTaskDto;
 import mk.com.finkixp.backend.model.domain.Subject;
+import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.model.enums.Difficulty;
 
@@ -21,4 +22,8 @@ public interface TaskApplicationService {
     DisplayTaskDto createTask(CreateTaskDto createTaskDto, Subject subject, User user);
 
     List<DisplayTaskDto> findByDifficulty(Difficulty difficulty);
+
+    List<DisplayTaskDto> findAllOrderByDifficultyAsc();
+
+    List<DisplayTaskDto> findAllOrderByDifficultyDesc();
 }

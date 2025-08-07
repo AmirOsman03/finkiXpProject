@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskApplicationServiceImpl implements TaskApplicationService {
@@ -71,6 +72,16 @@ public class TaskApplicationServiceImpl implements TaskApplicationService {
     @Override
     public List<DisplayTaskDto> findByDifficulty(Difficulty difficulty) {
         return DisplayTaskDto.fromTasks(this.taskService.findByDifficulty(difficulty));
+    }
+
+    @Override
+    public List<DisplayTaskDto> findAllOrderByDifficultyAsc() {
+        return this.taskService.findAllOrderByDifficultyAsc().stream().map(DisplayTaskDto::fromUser).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DisplayTaskDto> findAllOrderByDifficultyDesc() {
+        return this.taskService.findAllOrderByDifficultyDesc().stream().map(DisplayTaskDto::fromUser).collect(Collectors.toList());
     }
 
 

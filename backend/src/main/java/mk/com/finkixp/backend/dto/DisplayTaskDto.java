@@ -12,7 +12,6 @@ public record DisplayTaskDto(
         String description,
         Boolean completed,
         String subject,
-        String username,
         Difficulty difficulty,
         Integer xp
 
@@ -25,7 +24,6 @@ public record DisplayTaskDto(
                 task.getDescription(),
                 task.isCompleted(),
                 task.getSubject().getName(),
-                task.getUser().getUsername(),
                 task.getDifficulty(),
                 task.getXp()
         );

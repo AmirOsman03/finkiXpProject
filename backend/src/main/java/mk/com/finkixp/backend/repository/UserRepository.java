@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     org.springframework.security.core.userdetails.User findByName(String name);
 
-    @Query("SELECT new mk.com.finkixp.backend.dto.UserLevelDto(u.username, u.level) " +
+    @Query("SELECT new mk.com.finkixp.backend.dto.UserLevelDto(u.username, u.level , u.xpPoints) " +
             "FROM User u ORDER BY u.level DESC limit 10")
     public List<UserLevelDto> findTop10ByLevel();
 

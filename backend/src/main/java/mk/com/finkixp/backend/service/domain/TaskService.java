@@ -21,4 +21,8 @@ public interface TaskService {
     void completeTask(Long id, String username);
 
     List<Task> findByDifficulty(Difficulty difficulty);
+
+    List<Task> findAllOrderByDifficultyDesc();
+
+    List<Task> findAllOrderByDifficultyAsc();
 }

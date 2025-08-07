@@ -74,7 +74,7 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.save(task);
 
         User user = task.getUser();
-        Integer currentXp = user.getXpPoints() == null ? 0 : user.getXpPoints();
+        int currentXp = user.getXpPoints() == null ? 0 : user.getXpPoints();
 
         // Претпоставувам дека Task има метод getXp() што враќа поени за задачата
         int newXp = currentXp + (task.getXp() != null ? task.getXp() : 0);
@@ -86,6 +86,16 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> findByDifficulty(Difficulty difficulty) {
         return this.taskRepository.findByDifficulty(difficulty);
+    }
+
+    @Override
+    public List<Task> findAllOrderByDifficultyDesc() {
+        return this.taskRepository.findAllOrderByDifficultyDesc();
+    }
+
+    @Override
+    public List<Task> findAllOrderByDifficultyAsc() {
+        return this.taskRepository.findAllOrderByDifficultyAsc();
     }
 
 

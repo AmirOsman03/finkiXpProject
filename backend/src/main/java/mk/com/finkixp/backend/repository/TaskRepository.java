@@ -13,4 +13,28 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByDifficulty(Difficulty difficulty);
 
+    @Query(value = """
+    SELECT * FROM tasks
+    ORDER BY\s
+        CASE difficulty
+            WHEN 'EASY' THEN 1
+            WHEN 'MEDIUM' THEN 2
+            WHEN 'HARD' THEN 3
+        END ASC
+   \s""", nativeQuery = true)
+    List<Task> findAllOrderByDifficultyAsc();
+
+    @Query(value = """
+    SELECT * FROM tasks
+    ORDER BY\s
+        CASE difficulty
+            WHEN 'EASY' THEN 3
+            WHEN 'MEDIUM' THEN 2
+            WHEN 'HARD' THEN 1
+        END ASC
+   \s""", nativeQuery = true)
+    List<Task> findAllOrderByDifficultyDesc();
+
+
+
 }

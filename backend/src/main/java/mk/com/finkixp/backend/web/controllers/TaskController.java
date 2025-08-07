@@ -5,6 +5,7 @@ import mk.com.finkixp.backend.dto.DisplayTaskDto;
 import mk.com.finkixp.backend.model.domain.Subject;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.model.enums.Difficulty;
+import mk.com.finkixp.backend.model.enums.SortOrder;
 import mk.com.finkixp.backend.service.application.TaskApplicationService;
 import mk.com.finkixp.backend.service.domain.SubjectService;
 import mk.com.finkixp.backend.service.domain.TaskService;
@@ -87,6 +88,21 @@ public class TaskController {
     public ResponseEntity<List<DisplayTaskDto>> getTasksByDifficulty(@RequestParam Difficulty difficulty) {
         return ResponseEntity.ok(this.taskApplicationService.findByDifficulty(difficulty));
     }
+
+
+    @GetMapping("/sorted")
+    public ResponseEntity<List<DisplayTaskDto>> getTasksSortedByDifficulty(@RequestParam SortOrder sort) {
+        List<DisplayTaskDto> tasks;
+
+        switch (sort) {
+            case EASY_FIRST -> tasks = taskApplicationService.findAllOrderByDifficultyAsc();
+            case HARD_FIRST -> tasks = taskApplicationService.findAllOrderByDifficultyDesc();
+            default -> tasks = taskApplicationService.findAllTasks();
+        }
+
+        return ResponseEntity.ok(tasks);
+    }
+
 
 }
 

@@ -32,7 +32,7 @@ public class DataInitializer {
         this.taskRepository = taskRepository;
     }
 
-     @PostConstruct
+     //@PostConstruct
     public void init() {
         User admin = new User(
                 "admin",
