@@ -11,6 +11,7 @@ import LeaderboardPage from "./ui/pages/LeaderboardPage/LeaderboardPage.jsx";
 import AboutUsPage from "./ui/pages/AboutUsPage/AboutUsPage.jsx";
 import MePage from "./ui/pages/MePage/MePage.jsx";
 import ProtectedRoute from "./ui/components/Routing/ProtectedRoute.jsx";
+import CompletedPage from "./ui/pages/CompletedPage/CompletedPage.jsx";
 
 const App = () => {
     return (
@@ -27,6 +28,7 @@ const App = () => {
                         <Route path="subject/:id" element={<SubjectDetails/>}/>
                         <Route path="leaderboard" element={<LeaderboardPage/>}/>
                         <Route path="me" element={<MePage/>}/>
+                        <Route path="completed" element={<CompletedPage/>}/>
                     </Route>
                 </Route>
             </Routes>

@@ -2,9 +2,10 @@ import React from 'react';
 import useTaskDetails from "/src/hooks/useTaskDetails.js";
 import {FaBook, FaRegStar, FaRegListAlt, FaPlay} from 'react-icons/fa';
 import {MdOutlineDescription} from 'react-icons/md';
-import {useParams} from "react-router";
+import {useParams, useNavigate} from "react-router";
 import Breadcrumb from "../../Layout/Breadcrumb/Breadcrump.jsx";
 import {SiLevelsdotfyi} from "react-icons/si";
+import useTasks from "../../../../hooks/useTasks.js";
 
 const breadcrumbItems = [
     { label: "Home", to: "/" },
@@ -15,6 +16,13 @@ const breadcrumbItems = [
 const TaskDetails = () => {
     const {id} = useParams();
     const {task, loading} = useTaskDetails(id);
+    const navigate = useNavigate();
+    const {onComplete} = useTasks();
+
+    const handleComplete = () => {
+        onComplete(task.id);
+        navigate('/completed');
+    }
 
     // Difficulty configuration
     const difficultyConfig = {
@@ -94,13 +102,13 @@ const TaskDetails = () => {
                             <p className="text-gray-700">{task.description}</p>
                         </div>
                     </div>
-                    <a
-                        href={"/"}
-                        className="flex items-center justify-center gap-2 px-8 py-3 mt-5 bg-gradient-to-r from-green-600 to-emerald-400 text-white rounded-full shadow-lg hover:scale-105 hover:from-green-700 hover:to-emerald-500 transition-all duration-200 text-lg font-semibold"
+                    <button
+                        onClick={handleComplete}
+                        className="flex items-center justify-center gap-2 px-8 py-3 mt-5 bg-gradient-to-r from-green-600 to-emerald-400 text-white rounded-full shadow-lg hover:scale-105 hover:from-green-700 hover:to-emerald-500 transition-all duration-200 text-lg font-semibold w-full"
                     >
                         <FaPlay/>
                         Почни
-                    </a>
+                    </button>
                 </div>
 
                 <style>{`
