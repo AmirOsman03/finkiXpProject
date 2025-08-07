@@ -5,7 +5,6 @@ import EditTaskDialog from "../EditTaskDialog/EditTaskDialog.jsx";
 import DeleteTaskDialog from "../DeleteTaskDialog/DeleteTaskDialog.jsx";
 import useUserDetails from "../../../../hooks/useUserDetails.js";
 
-
 const TaskCard = ({task, onUpdate, onDelete, subjects}) => {
     const navigate = useNavigate();
     const [EditTaskDialogOpen, setEditTaskDialogOpen] = useState(false);
@@ -15,6 +14,33 @@ const TaskCard = ({task, onUpdate, onDelete, subjects}) => {
     const handleClick = (id) => {
         navigate("/tasks/" + id);
     };
+
+    // Difficulty configuration
+    const difficultyConfig = {
+        EASY: {
+            bg: 'bg-green-100',
+            text: 'text-green-700',
+            icon: 'text-green-500'
+        },
+        MEDIUM: {
+            bg: 'bg-yellow-100',
+            text: 'text-yellow-700',
+            icon: 'text-yellow-500'
+        },
+        HARD: {
+            bg: 'bg-red-100',
+            text: 'text-red-700',
+            icon: 'text-red-500'
+        },
+        default: {
+            bg: 'bg-gray-100',
+            text: 'text-gray-700',
+            icon: 'text-gray-500'
+        }
+    };
+
+    const difficulty = task.difficulty || 'Unknown';
+    const difficultyStyle = difficultyConfig[difficulty] || difficultyConfig.default;
 
     if (!task) return null;
 
@@ -36,11 +62,13 @@ const TaskCard = ({task, onUpdate, onDelete, subjects}) => {
                         {task.name}
                     </h3>
                     <div className="flex gap-2 mt-auto">
-                        <div
-                            className="flex items-center gap-1 py-1 bg-purple-50 rounded-full text-xs font-medium text-purple-700">
+                        <div className="flex items-center gap-1 py-1 bg-purple-50 rounded-full text-xs font-medium text-purple-700 px-3">
                             <FaRegStar className="text-purple-400 text-lg"/>
-                            {task.points} XP
+                            {task.xp} XP
                         </div>
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${difficultyStyle.bg} ${difficultyStyle.text}`}>
+                            {difficulty}
+                        </span>
                     </div>
                     {user.role === 'ROLE_ADMIN' && (
                         <div className={"flex justify-end pt-5"}>
