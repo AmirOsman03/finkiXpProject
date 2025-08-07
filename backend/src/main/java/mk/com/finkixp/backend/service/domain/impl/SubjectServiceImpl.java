@@ -46,4 +46,10 @@ public class SubjectServiceImpl implements SubjectService {
                     return subjectRepository.save(existingSubject);
                 });
     }
+
+    @Override
+    public List<Subject> searchSubjects(String keyword) {
+        return subjectRepository.findByNameContainingIgnoreCase(keyword);
+    }
+
 }

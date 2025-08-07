@@ -16,4 +16,5 @@ public interface UserApplicationService {
 
     List<UserLevelDto> findTop10ByLevel();
 
+
 }

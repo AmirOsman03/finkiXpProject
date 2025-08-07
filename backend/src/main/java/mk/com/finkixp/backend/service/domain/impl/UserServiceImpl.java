@@ -1,8 +1,10 @@
 package mk.com.finkixp.backend.service.domain.impl;
 
+import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.model.enums.Role;
 import mk.com.finkixp.backend.model.exception.*;
+import mk.com.finkixp.backend.repository.TaskRepository;
 import mk.com.finkixp.backend.repository.UserRepository;
 import mk.com.finkixp.backend.service.domain.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +17,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TaskRepository taskRepository;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, TaskRepository taskRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.taskRepository = taskRepository;
     }
 
     @Override

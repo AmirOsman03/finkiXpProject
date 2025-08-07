@@ -52,4 +52,9 @@ public class SubjectApplicationServiceImpl implements SubjectApplicationService 
         return DisplaySubjectDto.from(subjectService.save(createSubjectDto.toSubject()));
     }
 
+    @Override
+    public List<DisplaySubjectDto> searchSubjects(String keyword) {
+        return DisplaySubjectDto.from(subjectService.searchSubjects(keyword));
+    }
+
 }

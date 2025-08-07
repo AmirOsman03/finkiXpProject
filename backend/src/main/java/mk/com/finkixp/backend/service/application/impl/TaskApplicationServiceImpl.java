@@ -5,6 +5,7 @@ import mk.com.finkixp.backend.dto.DisplayTaskDto;
 import mk.com.finkixp.backend.model.domain.Subject;
 import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.model.domain.User;
+import mk.com.finkixp.backend.model.enums.Difficulty;
 import mk.com.finkixp.backend.service.application.TaskApplicationService;
 import mk.com.finkixp.backend.service.domain.TaskService;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,6 @@ public class TaskApplicationServiceImpl implements TaskApplicationService {
         // Convert to display DTO and return
         return DisplayTaskDto.fromUser(savedTask);
     }
+
 
 }

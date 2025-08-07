@@ -17,4 +17,7 @@ public interface SubjectApplicationService {
     void deleteById(Long id);
 
     DisplaySubjectDto save(CreateSubjectDto createSubjectDto, User user);
-}
+
+    List<DisplaySubjectDto> searchSubjects(String keyword) ;
+
+    }
