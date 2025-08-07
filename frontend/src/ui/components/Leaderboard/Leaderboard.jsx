@@ -70,7 +70,7 @@ const Leaderboard = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-end gap-1">
-                                    <span className="text-2xl font-bold text-gray-900">{user.points || 0}</span>
+                                    <span className="text-2xl font-bold text-gray-900">{user.xpPoints || 0}</span>
                                     <span className="text-xs text-gray-600 uppercase tracking-wider">points</span>
                                 </div>
                             </div>
