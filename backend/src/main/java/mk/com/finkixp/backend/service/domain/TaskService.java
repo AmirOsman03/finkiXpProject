@@ -20,4 +20,5 @@ public interface TaskService {
 
     void completeTask(Long id, String username);
 
+    List<Task> findByDifficulty(Difficulty difficulty);
 }

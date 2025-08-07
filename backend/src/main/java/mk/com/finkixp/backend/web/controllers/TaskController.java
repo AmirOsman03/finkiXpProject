@@ -4,6 +4,7 @@ import mk.com.finkixp.backend.dto.CreateTaskDto;
 import mk.com.finkixp.backend.dto.DisplayTaskDto;
 import mk.com.finkixp.backend.model.domain.Subject;
 import mk.com.finkixp.backend.model.domain.User;
+import mk.com.finkixp.backend.model.enums.Difficulty;
 import mk.com.finkixp.backend.service.application.TaskApplicationService;
 import mk.com.finkixp.backend.service.domain.SubjectService;
 import mk.com.finkixp.backend.service.domain.TaskService;
@@ -81,5 +82,11 @@ public class TaskController {
         taskService.completeTask(id, principal.getName());
         return ResponseEntity.ok("Task completed successfully.");
     }
+
+    @GetMapping("/api/tasks/by-difficulty")
+    public ResponseEntity<List<DisplayTaskDto>> getTasksByDifficulty(@RequestParam Difficulty difficulty) {
+        return ResponseEntity.ok(this.taskApplicationService.findByDifficulty(difficulty));
+    }
+
 }
 

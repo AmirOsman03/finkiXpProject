@@ -68,5 +68,10 @@ public class TaskApplicationServiceImpl implements TaskApplicationService {
         return DisplayTaskDto.fromUser(savedTask);
     }
 
+    @Override
+    public List<DisplayTaskDto> findByDifficulty(Difficulty difficulty) {
+        return DisplayTaskDto.fromTasks(this.taskService.findByDifficulty(difficulty));
+    }
+
 
 }

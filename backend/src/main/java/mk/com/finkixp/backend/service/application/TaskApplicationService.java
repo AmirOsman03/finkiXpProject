@@ -20,4 +20,5 @@ public interface TaskApplicationService {
 
     DisplayTaskDto createTask(CreateTaskDto createTaskDto, Subject subject, User user);
 
+    List<DisplayTaskDto> findByDifficulty(Difficulty difficulty);
 }

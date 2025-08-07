@@ -83,5 +83,10 @@ public class TaskServiceImpl implements TaskService {
         userRepository.save(user);
     }
 
+    @Override
+    public List<Task> findByDifficulty(Difficulty difficulty) {
+        return this.taskRepository.findByDifficulty(difficulty);
+    }
+
 
 }
