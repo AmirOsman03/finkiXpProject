@@ -7,31 +7,32 @@ const pages = [
     {
         name: 'Home',
         path: '/',
+        public: true  // Always visible
     },
     {
         name: 'Subjects',
         path: '/subject',
-        hide: false
+        public: false  // Only visible when logged in
     },
     {
         name: 'Tasks',
         path: '/tasks',
-        hide: true,
+        public: false
     },
     {
         name: 'Leaderboard',
         path: '/leaderboard',
-        hide: false,
+        public: false
     },
     {
         name: 'About Us',
         path: "/aboutUs",
-        hide: true,
+        public: true
     },
     {
         name: 'Me',
         path: "/me",
-        hide: true,
+        public: false
     },
 ];
 
@@ -47,6 +48,11 @@ const Navbar = () => {
         logout();
         navigate('/');
     };
+
+    // Filter pages based on authentication status
+    const filteredPages = pages.filter(page =>
+        page.public || (isLoggedIn && !page.public)
+    );
 
     return (
         <nav
@@ -65,7 +71,7 @@ const Navbar = () => {
             {/* Navigation Links - Centered and Equally Spaced */}
             <div className="flex-1 flex justify-center">
                 <div className="flex gap-8">
-                    {pages.map((page) => (
+                    {filteredPages.map((page) => (
                         <Link
                             key={page.path}
                             to={page.path}
