@@ -7,6 +7,7 @@ import mk.com.finkixp.backend.model.exception.InvalidUserCredentialsException;
 import mk.com.finkixp.backend.model.exception.PasswordsDoNotMatchException;
 import mk.com.finkixp.backend.repository.UserRepository;
 import mk.com.finkixp.backend.service.application.UserApplicationService;
+import mk.com.finkixp.backend.service.domain.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,10 +21,12 @@ public class UserController {
 
     private final UserApplicationService userApplicationService;
     private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserApplicationService userApplicationService, UserRepository userRepository) {
+    public UserController(UserApplicationService userApplicationService, UserRepository userRepository, UserService userService) {
         this.userApplicationService = userApplicationService;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @PostMapping("/register")
@@ -60,5 +63,12 @@ public class UserController {
     public ResponseEntity<List<UserLevelDto>> getLeaderboard() {
         return ResponseEntity.ok(userApplicationService.findTop10ByLevel());
     }
+
+    @GetMapping("/api/users/{username}")
+    public DisplayUserDto getUser(@PathVariable String username) {
+        User user = userService.findByUsername(username);
+        return DisplayUserDto.from(user);
+    }
+
 
 }

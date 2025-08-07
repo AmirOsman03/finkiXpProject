@@ -1,7 +1,10 @@
 package mk.com.finkixp.backend.service.domain.impl;
 
 import mk.com.finkixp.backend.model.domain.Task;
+import mk.com.finkixp.backend.model.domain.User;
+import mk.com.finkixp.backend.model.enums.Difficulty;
 import mk.com.finkixp.backend.repository.TaskRepository;
+import mk.com.finkixp.backend.repository.UserRepository;
 import mk.com.finkixp.backend.service.domain.TaskService;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +14,11 @@ import java.util.Optional;
 @Service
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
 
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -28,6 +33,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task save(Task task) {
+
         return taskRepository.save(task);
     }
 
@@ -46,4 +52,36 @@ public class TaskServiceImpl implements TaskService {
             return taskRepository.save(task);
         });
     }
+
+
+    public void completeTask(Long id, String username) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        if (task.getUser() == null) {
+            throw new RuntimeException("Task has no user assigned!");
+        }
+
+        if (!task.getUser().getUsername().equals(username)) {
+            throw new RuntimeException("Not authorized");
+        }
+
+        if (task.isCompleted()) {
+            throw new RuntimeException("Task is already completed");
+        }
+
+        task.setCompleted(true);
+        taskRepository.save(task);
+
+        User user = task.getUser();
+        Integer currentXp = user.getXpPoints() == null ? 0 : user.getXpPoints();
+
+        // Претпоставувам дека Task има метод getXp() што враќа поени за задачата
+        int newXp = currentXp + (task.getXp() != null ? task.getXp() : 0);
+        user.setXpPoints(newXp);
+
+        userRepository.save(user);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package mk.com.finkixp.backend.dto;
 
 import mk.com.finkixp.backend.model.domain.Task;
+import mk.com.finkixp.backend.model.enums.Difficulty;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +12,10 @@ public record DisplayTaskDto(
         String description,
         Boolean completed,
         String subject,
-        String username
+        String username,
+        Difficulty difficulty,
+        Integer xp
+
 
 ) {
     public static DisplayTaskDto fromUser(Task task) {
@@ -21,7 +25,9 @@ public record DisplayTaskDto(
                 task.getDescription(),
                 task.isCompleted(),
                 task.getSubject().getName(),
-                task.getUser().getUsername()
+                task.getUser().getUsername(),
+                task.getDifficulty(),
+                task.getXp()
         );
     }
 
@@ -33,6 +39,6 @@ public record DisplayTaskDto(
     }
 
     public static Task toTask(Task task) {
-        return new Task(task.getName(), task.getDescription(), task.isCompleted(), task.getSubject());
+        return new Task(task.getName(), task.getDescription(), task.isCompleted(), task.getSubject(), task.getDifficulty());
     }
 }

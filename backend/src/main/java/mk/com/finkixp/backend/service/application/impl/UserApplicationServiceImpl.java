@@ -3,7 +3,9 @@ package mk.com.finkixp.backend.service.application.impl;
 import lombok.AllArgsConstructor;
 import mk.com.finkixp.backend.dto.*;
 import mk.com.finkixp.backend.helper.JwtHelper;
+import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.model.domain.User;
+import mk.com.finkixp.backend.repository.TaskRepository;
 import mk.com.finkixp.backend.repository.UserRepository;
 import mk.com.finkixp.backend.service.application.UserApplicationService;
 import mk.com.finkixp.backend.service.domain.UserService;
@@ -63,5 +65,7 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     public List<UserLevelDto> findTop10ByLevel() {
         return userRepository.findTop10ByLevel();
     }
+
+
 
 }

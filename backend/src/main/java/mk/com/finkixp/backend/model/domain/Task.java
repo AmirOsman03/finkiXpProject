@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mk.com.finkixp.backend.model.enums.Difficulty;
 
 @Entity
 @Table(name = "tasks")
@@ -28,23 +29,36 @@ public class Task {
     @ManyToOne
     private User user;
 
-    public Task(String name, String description, boolean completed, Subject subject) {
+    private Integer xp;
+
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
+
+    public Task(String name, String description, boolean completed, Subject subject,Difficulty difficulty) {
 
         this.name = name;
         this.description = description;
         this.completed = false;
         this.subject = subject;
 
+        this.difficulty = difficulty;
+        this.xp = calculateXpByDifficulty();
+
     }
 
-    public Task(String name, String description, Subject subject,User user) {
+    public Task(String name, String description, Subject subject,User user,Difficulty difficulty) {
 
         this.name = name;
         this.description = description;
         this.completed = false;
         this.subject = subject;
         this.user = user;
+
+        this.difficulty = difficulty;
+        this.xp = calculateXpByDifficulty();
     }
+
+
 
     public Task() {
     }
@@ -96,5 +110,33 @@ public class Task {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
     // Други полиња, како user, итн.
+
+
+    public Integer getXp() {
+        return xp;
+    }
+
+    public void setXp(Integer xp) {
+        this.xp = xp;
+    }
+
+    private Integer calculateXpByDifficulty() {
+        if (this.difficulty == null) return 0;
+
+        return switch (this.difficulty) {
+            case EASY -> 20;
+            case MEDIUM -> 40;
+            case HARD -> 60;
+        };
+    }
+
 }

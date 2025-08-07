@@ -61,4 +61,14 @@ public class SubjectController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<DisplaySubjectDto>> searchSubjects(@RequestParam String keyword) {
+
+        List<DisplaySubjectDto> results = applicationService.searchSubjects(keyword);
+        if (results.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(results);
+    }
+
 }

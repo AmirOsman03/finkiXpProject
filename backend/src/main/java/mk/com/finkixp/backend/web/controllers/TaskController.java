@@ -6,12 +6,14 @@ import mk.com.finkixp.backend.model.domain.Subject;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.service.application.TaskApplicationService;
 import mk.com.finkixp.backend.service.domain.SubjectService;
+import mk.com.finkixp.backend.service.domain.TaskService;
 import mk.com.finkixp.backend.service.domain.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -21,15 +23,17 @@ public class TaskController {
     private final TaskApplicationService taskApplicationService;
     private final SubjectService subjectService;
     private final UserService userService;
+    private final TaskService taskService;
 
     public TaskController(
             TaskApplicationService taskApplicationService,
             SubjectService subjectService,
-            UserService userService
+            UserService userService, TaskService taskService
     ) {
         this.taskApplicationService = taskApplicationService;
         this.subjectService = subjectService;
         this.userService = userService;
+        this.taskService = taskService;
     }
 
     @GetMapping
@@ -71,4 +75,11 @@ public class TaskController {
         DisplayTaskDto createdTask = taskApplicationService.createTask(createTaskDto, subject, user);
         return ResponseEntity.ok(createdTask);
     }
+
+    @PostMapping("/{id}/complete")
+    public ResponseEntity<String> completeTask(@PathVariable Long id, Principal principal) {
+        taskService.completeTask(id, principal.getName());
+        return ResponseEntity.ok("Task completed successfully.");
+    }
 }
+

@@ -8,11 +8,12 @@ public record DisplayUserDto (
         String name,
         String surname,
         Role role,
-        Integer level
+        Integer level,
+        Integer xpPoints
 ){
 
     public static DisplayUserDto from(User user){
-        return new DisplayUserDto(user.getUsername(), user.getName(), user.getSurname(), user.getRole(),user.getLevel());
+        return new DisplayUserDto(user.getUsername(), user.getName(), user.getSurname(), user.getRole(),user.getLevel(),user.getXpPoints());
     }
 
     public User toUser(){

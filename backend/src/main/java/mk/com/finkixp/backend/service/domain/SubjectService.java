@@ -16,4 +16,5 @@ public interface SubjectService {
 
     Optional<Subject> update(Long id,Subject subject);
 
+    List<Subject> searchSubjects(String keyword);
 }
