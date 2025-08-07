@@ -7,6 +7,17 @@ import useUserDetails from "../../../hooks/useUserDetails.js";
 const MePage = () => {
     const user = useUserDetails();
 
+    if (!user || !user.username) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-indigo-100 to-purple-200">
+                <div className="bg-white shadow-md rounded-xl px-6 py-8 text-center">
+                    <h1 className="text-2xl font-semibold text-red-600 mb-4">🚫 No user logged in</h1>
+                    <p className="text-gray-600">Please log in to view your profile.</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div
             className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-100 to-purple-200 py-10 px-6 flex flex-col items-center">
