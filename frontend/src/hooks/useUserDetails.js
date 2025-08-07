@@ -6,7 +6,8 @@ const initialState = {
     name: '',
     surname: '',
     role: '',
-    level: ''
+    level: '',
+    xpPoints: '',
 };
 
 const UseUserDetails= () => {
@@ -22,6 +23,7 @@ const UseUserDetails= () => {
                     surname: response.data.surname,
                     role: response.data.role,
                     level: response.data.level,
+                    xpPoints: response.data.xpPoints,
                 });
             })
             .catch((error) => {

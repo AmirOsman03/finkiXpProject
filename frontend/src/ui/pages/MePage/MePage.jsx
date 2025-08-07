@@ -41,7 +41,7 @@ const MePage = () => {
                             XP
                         </h2>
                         <p className="text-4xl font-bold text-indigo-900">
-                            <CountUp end={user.xp} duration={2}/>
+                            <CountUp end={user.xpPoints} duration={2}/>
                         </p>
                     </div>
                 </div>
