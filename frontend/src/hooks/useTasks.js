@@ -8,21 +8,26 @@ const initialState = {
 
 const UseTasks = () => {
     const [state, setState] = useState(initialState);
+    const [difficulty, setDifficulty] = useState(null);
 
     const fetchTasks = useCallback(() => {
         setState(initialState);
-        taskRepository
-            .findAll()
+        const fetchPromise = difficulty
+            ? taskRepository.findByDifficulty(difficulty)
+            : taskRepository.findAll();
+
+        fetchPromise
             .then((response) => {
                 setState({
                     tasks: response.data,
-                    loading: false,
-                });
+                    loading: false
+                })
             })
             .catch((error) => {
                 console.log(error);
-            });
-    }, []);
+            })
+
+    }, [difficulty]);
 
     const onCreate = useCallback((data) => {
         taskRepository
@@ -82,6 +87,8 @@ const UseTasks = () => {
         onUpdate: onUpdate,
         onDelete: onDelete,
         onComplete: onComplete,
+        difficulty: difficulty,
+        setDifficulty: setDifficulty
     };
 };
 

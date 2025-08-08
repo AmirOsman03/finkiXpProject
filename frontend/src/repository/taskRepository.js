@@ -18,6 +18,9 @@ const taskRepository = {
     },
     complete: async (id) => {
         return await axiosInstance.post(`/tasks/${id}/complete`)
+    },
+    findByDifficulty: async (difficulty) => {
+        return axiosInstance.get(`/tasks/by-difficulty?difficulty=${difficulty}`)
     }
 };
 
