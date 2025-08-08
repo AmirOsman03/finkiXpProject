@@ -91,6 +91,18 @@ const UseTasks = () => {
             ).catch(error => console.log(error));
     }, [fetchTasks])
 
+    const onComplete = useCallback((id) => {
+        taskRepository
+            .complete(id)
+            .then(() => {
+                fetchTasks()
+                console.log("Successfully completed task!")
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }, [fetchTasks]);
+
 
     useEffect(() => {
         fetchTasks();
@@ -103,6 +115,7 @@ const UseTasks = () => {
         onDelete: onDelete,
         filterByDifficulty: filterByDifficulty,
         filterSort: filterSort,
+        onComplete: onComplete,
     };
 };
 
