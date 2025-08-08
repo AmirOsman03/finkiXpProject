@@ -54,16 +54,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
 
-    public void completeTask(Long id, String username) {
+    public Task completeTask(Long id, User user) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
 
         if (task.getUser() == null) {
             throw new RuntimeException("Task has no user assigned!");
-        }
-
-        if (!task.getUser().getUsername().equals(username)) {
-            throw new RuntimeException("Not authorized");
         }
 
         if (task.isCompleted()) {
@@ -73,7 +69,7 @@ public class TaskServiceImpl implements TaskService {
         task.setCompleted(true);
         taskRepository.save(task);
 
-        User user = task.getUser();
+
         int currentXp = user.getXpPoints() == null ? 0 : user.getXpPoints();
 
         // Претпоставувам дека Task има метод getXp() што враќа поени за задачата
@@ -81,6 +77,7 @@ public class TaskServiceImpl implements TaskService {
         user.setXpPoints(newXp);
 
         userRepository.save(user);
+        return task;
     }
 
     @Override

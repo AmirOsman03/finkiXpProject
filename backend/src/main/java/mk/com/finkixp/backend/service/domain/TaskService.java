@@ -1,6 +1,7 @@
 package mk.com.finkixp.backend.service.domain;
 
 import mk.com.finkixp.backend.model.domain.Task;
+import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.model.enums.Difficulty;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface TaskService {
     Optional<Task> update(Long id, Task task);
 
 
-    void completeTask(Long id, String username);
+    Task completeTask(Long id, User user);
 
     List<Task> findByDifficulty(Difficulty difficulty);
 

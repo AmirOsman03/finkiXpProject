@@ -84,5 +84,10 @@ public class TaskApplicationServiceImpl implements TaskApplicationService {
         return this.taskService.findAllOrderByDifficultyDesc().stream().map(DisplayTaskDto::fromUser).collect(Collectors.toList());
     }
 
+    @Override
+    public DisplayTaskDto complete(Long id, User user) {
+        return DisplayTaskDto.fromUser(this.taskService.completeTask(id,user));
+    }
+
 
 }

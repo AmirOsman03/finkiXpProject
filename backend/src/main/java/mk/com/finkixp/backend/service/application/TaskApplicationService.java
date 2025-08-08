@@ -26,4 +26,6 @@ public interface TaskApplicationService {
     List<DisplayTaskDto> findAllOrderByDifficultyAsc();
 
     List<DisplayTaskDto> findAllOrderByDifficultyDesc();
+
+    DisplayTaskDto complete(Long id,User user);
 }

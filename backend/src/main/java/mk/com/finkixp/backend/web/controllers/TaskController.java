@@ -3,6 +3,7 @@ package mk.com.finkixp.backend.web.controllers;
 import mk.com.finkixp.backend.dto.CreateTaskDto;
 import mk.com.finkixp.backend.dto.DisplayTaskDto;
 import mk.com.finkixp.backend.model.domain.Subject;
+import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.model.domain.User;
 import mk.com.finkixp.backend.model.enums.Difficulty;
 import mk.com.finkixp.backend.model.enums.SortOrder;
@@ -43,6 +44,18 @@ public class TaskController {
         return taskApplicationService.findAllTasks();
     }
 
+
+    @GetMapping("/by-difficulty")
+    public ResponseEntity<List<DisplayTaskDto>> getTasksByDifficulty(@RequestParam String difficulty) {
+        try {
+            Difficulty enumDifficulty = Difficulty.valueOf(difficulty.toUpperCase());
+            return ResponseEntity.ok(this.taskApplicationService.findByDifficulty(enumDifficulty));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid difficulty value: " + difficulty);
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<DisplayTaskDto> findById(@PathVariable Long id) {
         return taskApplicationService.findTaskById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
@@ -79,15 +92,14 @@ public class TaskController {
     }
 
     @PostMapping("/{id}/complete")
-    public ResponseEntity<String> completeTask(@PathVariable Long id, Principal principal) {
-        taskService.completeTask(id, principal.getName());
-        return ResponseEntity.ok("Task completed successfully.");
+    public ResponseEntity<DisplayTaskDto> completeTask(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByUsername(userDetails.getUsername());
+
+        return ResponseEntity.ok(taskApplicationService.complete(id, user));
     }
 
-    @GetMapping("/api/tasks/by-difficulty")
-    public ResponseEntity<List<DisplayTaskDto>> getTasksByDifficulty(@RequestParam Difficulty difficulty) {
-        return ResponseEntity.ok(this.taskApplicationService.findByDifficulty(difficulty));
-    }
+
+
 
 
     @GetMapping("/sorted")
