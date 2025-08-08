@@ -52,7 +52,7 @@ const CompletedPage = () => {
                             Find More Tasks <FaArrowRight />
                         </button>
                         <button
-                            onClick={() => navigate('/profile')}
+                            onClick={() => navigate('/me')}
                             className="w-full py-3 px-6 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all"
                         >
                             View Profile
