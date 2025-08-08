@@ -19,6 +19,9 @@ const taskRepository = {
     findByDifficulty: async (difficulty) => {
         return await axiosInstance.get(`/tasks/by-difficulty?difficulty=${difficulty}`);
     },
+    sort: async (sortOrder) => {
+        return await axiosInstance.get(`/tasks/sorted?sort=${sortOrder}`);
+    }
 };
 
 export default taskRepository;

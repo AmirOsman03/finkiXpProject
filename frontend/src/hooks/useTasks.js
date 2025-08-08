@@ -76,6 +76,21 @@ const UseTasks = () => {
             ).catch(error => console.log(error));
     }, [fetchTasks]);
 
+    const filterSort = useCallback((sort) => {
+        if (!sort) {
+            return fetchTasks();
+        }
+        setState(initialState);
+        taskRepository
+            .sort(sort)
+            .then(response =>
+                setState({
+                    tasks: response.data,
+                    loading: false
+                })
+            ).catch(error => console.log(error));
+    }, [fetchTasks])
+
 
     useEffect(() => {
         fetchTasks();
@@ -87,6 +102,7 @@ const UseTasks = () => {
         onUpdate: onUpdate,
         onDelete: onDelete,
         filterByDifficulty: filterByDifficulty,
+        filterSort: filterSort,
     };
 };
 
