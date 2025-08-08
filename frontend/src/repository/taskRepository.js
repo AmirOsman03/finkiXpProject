@@ -16,12 +16,13 @@ const taskRepository = {
     delete: async (id) => {
         return await axiosInstance.delete(`/tasks/delete/${id}`)
     },
-    complete: async (id) => {
-        return await axiosInstance.post(`/tasks/${id}/complete`)
-    },
     findByDifficulty: async (difficulty) => {
-        return axiosInstance.get(`/tasks/by-difficulty?difficulty=${difficulty}`)
-    }
+        return await axiosInstance.get(`/tasks/by-difficulty`, {
+            params: {
+                difficulty: difficulty
+            }
+        });
+    },
 };
 
 export default taskRepository;

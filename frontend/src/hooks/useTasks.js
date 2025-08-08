@@ -8,26 +8,21 @@ const initialState = {
 
 const UseTasks = () => {
     const [state, setState] = useState(initialState);
-    const [difficulty, setDifficulty] = useState(null);
 
     const fetchTasks = useCallback(() => {
         setState(initialState);
-        const fetchPromise = difficulty
-            ? taskRepository.findByDifficulty(difficulty)
-            : taskRepository.findAll();
-
-        fetchPromise
+        taskRepository
+            .findAll()
             .then((response) => {
                 setState({
                     tasks: response.data,
-                    loading: false
-                })
+                    loading: false,
+                });
             })
             .catch((error) => {
                 console.log(error);
-            })
-
-    }, [difficulty]);
+            });
+    }, []);
 
     const onCreate = useCallback((data) => {
         taskRepository
@@ -65,17 +60,22 @@ const UseTasks = () => {
             });
     }, [fetchTasks]);
 
-    const onComplete = useCallback((id) => {
-        taskRepository
-            .complete(id)
-            .then(() => {
-                fetchTasks()
-                console.log("Successfully completed task!")
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+
+    const filterByDifficulty = useCallback((difficulty) => {
+        if (!difficulty) {
+            return fetchTasks();
+        }
+        setState(initialState);
+        taskRepository.findByDifficulty(difficulty)
+            .then(response =>
+                setState({
+                    tasks:
+                    response.data,
+                    loading: false
+                })
+            ).catch(error => console.log(error));
     }, [fetchTasks]);
+
 
     useEffect(() => {
         fetchTasks();
@@ -86,9 +86,7 @@ const UseTasks = () => {
         onCreate: onCreate,
         onUpdate: onUpdate,
         onDelete: onDelete,
-        onComplete: onComplete,
-        difficulty: difficulty,
-        setDifficulty: setDifficulty
+        filterByDifficulty: filterByDifficulty,
     };
 };
 

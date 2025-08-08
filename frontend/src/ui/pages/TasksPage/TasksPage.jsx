@@ -6,9 +6,23 @@ import AddTaskDialog from "../../components/Task/AddTaskDialog/AddTaskDialog.jsx
 import useSubjects from "../../../hooks/useSubjects.js";
 
 const TasksPage = () => {
-    const {tasks, loading, onCreate, onUpdate, onDelete, difficulty, setDifficulty} = useTasks();
+    const {tasks, loading, onCreate, onUpdate, onDelete, filterByDifficulty} = useTasks();
     const [AddTaskDialogOpen, setAddTaskDialogOpen] = useState(false);
     const {subjects} = useSubjects();
+
+    const [selectedDifficulty, setSelectedDifficulty] = useState("ALL");
+
+
+    const handleDifficultyChange = (event) => {
+        const difficulty = event.target.value;
+        setSelectedDifficulty(difficulty);
+
+        if (difficulty === "ALL") {
+            filterByDifficulty("");
+        } else {
+            filterByDifficulty(difficulty);
+        }
+    };
 
     if (loading) {
         return (
@@ -31,12 +45,10 @@ const TasksPage = () => {
                         <FaPlus className={"size-3"}/>
                     </button>
                 </div>
-                <select
-                    value={difficulty}
-                    onChange={(e) => setDifficulty(e.target.value || null)}
-                    className="mb-4 p-2 border rounded"
-                >
-                    <option value="">All</option>
+                {/* ✅ Dropdown filter */}
+                <select value={selectedDifficulty} onChange={handleDifficultyChange}
+                        className={"mb-4 p-2 border rounded-2xl "}>
+                    <option value="ALL">All</option>
                     <option value="EASY">Easy</option>
                     <option value="MEDIUM">Medium</option>
                     <option value="HARD">Hard</option>
