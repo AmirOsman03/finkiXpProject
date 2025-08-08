@@ -1,18 +1,19 @@
 import React from 'react';
 import {Link, useNavigate} from "react-router";
-import {FaGraduationCap} from "react-icons/fa";
+import {FaGraduationCap, FaUserCircle} from "react-icons/fa";
 import useAuth from "../../../../hooks/useAuth.js";
+import useUserDetails from "../../../../hooks/useUserDetails.js";
 
 const pages = [
     {
         name: 'Home',
         path: '/',
-        public: true  // Always visible
+        public: true
     },
     {
         name: 'Subjects',
         path: '/subject',
-        public: false  // Only visible when logged in
+        public: false
     },
     {
         name: 'Tasks',
@@ -29,15 +30,11 @@ const pages = [
         path: "/aboutUs",
         public: true
     },
-    {
-        name: 'Me',
-        path: "/me",
-        public: false
-    },
 ];
 
 const Navbar = () => {
     const {isLoggedIn, logout} = useAuth();
+    const user = useUserDetails();
     const navigate = useNavigate();
 
     const handleLoginClick = () => {
@@ -49,17 +46,14 @@ const Navbar = () => {
         navigate('/');
     };
 
-    // Filter pages based on authentication status
     const filteredPages = pages.filter(page =>
         page.public || (isLoggedIn && !page.public)
     );
 
     return (
-        <nav
-            className="mx-3 mt-3 rounded-full shadow-lg bg-white/80 backdrop-blur-md border border-gray-100 flex items-center px-6 py-3 min-h-[64px]">
+        <nav className="mx-3 mt-3 rounded-full shadow-lg bg-white/80 backdrop-blur-md border border-gray-100 flex items-center px-6 py-3 min-h-[64px]">
             {/* Logo */}
-            <div
-                className="flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full p-3 px-6 shadow-lg transition-all duration-300 transform">
+            <div className="flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full p-3 px-6 shadow-lg transition-all duration-300 transform">
                 <div className="flex items-center gap-2">
                     <FaGraduationCap className="text-white text-xl"/>
                 </div>
@@ -68,7 +62,7 @@ const Navbar = () => {
                 </Link>
             </div>
 
-            {/* Navigation Links - Centered and Equally Spaced */}
+            {/* Navigation Links */}
             <div className="flex-1 flex justify-center">
                 <div className="flex gap-8">
                     {filteredPages.map((page) => (
@@ -83,17 +77,20 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Search Bar */}
-            <div className="relative w-48 sm:w-64">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    className="w-full pl-4 pr-10 py-2 rounded-full border border-gray-200 bg-white shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-200 transition-all duration-200 text-sm"
-                />
-            </div>
+            {/* User Info & Auth Button */}
+            <div className="flex items-center gap-4">
+                {isLoggedIn && user && (
+                    <div
+                        onClick={() => navigate('/me')}
+                        className="flex items-center gap-3 bg-blue-50 rounded-full px-4 py-2 border border-blue-100 shadow-sm hover:bg-blue-100 transition-colors duration-200 cursor-pointer">
+                        <FaUserCircle className="text-blue-600 text-xl" />
+                        <div className="flex flex-col items-start">
+                            <span className="text-blue-800 font-medium text-sm leading-tight">{user.username}</span>
+                            <span className="text-blue-600 font-bold text-xs">Level {user.level || 1}</span>
+                        </div>
+                    </div>
+                )}
 
-            {/* Auth Button */}
-            <div className="ml-4">
                 {isLoggedIn ? (
                     <button
                         onClick={handleLogoutClick}
