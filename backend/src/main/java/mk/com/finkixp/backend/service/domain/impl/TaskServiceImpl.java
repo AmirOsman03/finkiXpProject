@@ -2,12 +2,15 @@ package mk.com.finkixp.backend.service.domain.impl;
 
 import mk.com.finkixp.backend.model.domain.Task;
 import mk.com.finkixp.backend.model.domain.User;
+import mk.com.finkixp.backend.model.domain.CompletedTask;
 import mk.com.finkixp.backend.model.enums.Difficulty;
 import mk.com.finkixp.backend.repository.TaskRepository;
 import mk.com.finkixp.backend.repository.UserRepository;
+import mk.com.finkixp.backend.repository.CompletedTaskRepository;
 import mk.com.finkixp.backend.service.domain.TaskService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +18,12 @@ import java.util.Optional;
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
+    private final CompletedTaskRepository completedTaskRepository;
 
-    public TaskServiceImpl(TaskRepository taskRepository, UserRepository userRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, UserRepository userRepository, CompletedTaskRepository completedTaskRepository) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
+        this.completedTaskRepository = completedTaskRepository;
     }
 
     @Override
@@ -63,18 +68,28 @@ public class TaskServiceImpl implements TaskService {
         }
 
         if (task.isCompleted()) {
-            throw new RuntimeException("Task is already completed");
+            throw new RuntimeException("Task already completed");
         }
 
-        task.setCompleted(true);
-        taskRepository.save(task);
+        CompletedTask completedTask = new CompletedTask();
+        completedTask.setUser(user);
+        completedTask.setTask(task);
+        completedTask.setCompletedAt(LocalDateTime.now());
+        completedTask.setXpAwarded(task.getXp());
 
+        completedTaskRepository.save(completedTask);
 
-        int currentXp = user.getXpPoints() == null ? 0 : user.getXpPoints();
+        // Ажурирај XP и Level на корисникот
+        int currentXp = Optional.ofNullable(user.getXpPoints()).orElse(0);
+        int newXp = currentXp + task.getXp();
 
-        // Претпоставувам дека Task има метод getXp() што враќа поени за задачата
-        int newXp = currentXp + (task.getXp() != null ? task.getXp() : 0);
         user.setXpPoints(newXp);
+
+        int xpThreshold = user.getLevel() * 100;
+        if (newXp >= xpThreshold) {
+            user.setLevel(user.getLevel() + 1);
+            user.setXpPoints(newXp - xpThreshold);
+        }
 
         userRepository.save(user);
         return task;
