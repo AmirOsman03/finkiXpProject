@@ -1,15 +1,14 @@
 package mk.com.finkixp.backend.model.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import mk.com.finkixp.backend.model.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 
 @Entity
@@ -27,7 +26,11 @@ public class User implements UserDetails {
     private String surname;
 
     private Integer level;
+
     private Integer xpPoints;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CompletedTask> tasks = new ArrayList<>();
 
     private boolean isAccountNonExpired = true;
     private boolean isAccountNonLocked = true;
@@ -170,5 +173,13 @@ public class User implements UserDetails {
 
     public void setXpPoints(Integer xpPoints) {
         this.xpPoints = xpPoints;
+    }
+
+    public List<CompletedTask> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<CompletedTask> tasks) {
+        this.tasks = tasks;
     }
 }

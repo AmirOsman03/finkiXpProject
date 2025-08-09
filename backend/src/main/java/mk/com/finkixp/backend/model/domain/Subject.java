@@ -18,6 +18,10 @@ public class Subject {
 
     private String name;
 
+    // Еден предмет има повеќе задачи
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks = new ArrayList<>();
+
     public Subject(Long id, String name, List<Task> tasks) {
         this.id = id;
         this.name = name;
@@ -26,10 +30,6 @@ public class Subject {
 
     public Subject() {
     }
-
-    // Еден предмет има повеќе задачи
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks = new ArrayList<>();
 
     public Subject(String name) {
         this.name = name;

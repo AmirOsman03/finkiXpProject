@@ -1,11 +1,10 @@
 package mk.com.finkixp.backend.model.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import mk.com.finkixp.backend.model.enums.Difficulty;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -34,7 +33,18 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
-    public Task(String name, String description, boolean completed, Subject subject,Difficulty difficulty) {
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CompletedTask> completedTasks = new ArrayList<>();
+
+    public List<CompletedTask> getCompletedTasks() {
+        return completedTasks;
+    }
+
+    public void setCompletedTasks(List<CompletedTask> completedTasks) {
+        this.completedTasks = completedTasks;
+    }
+
+    public Task(String name, String description, boolean completed, Subject subject, Difficulty difficulty) {
 
         this.name = name;
         this.description = description;
