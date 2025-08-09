@@ -1,7 +1,6 @@
 # FinkiXP
 
-FinkiXP is a full-stack web application designed to manage and interact with tasks, featuring difficulty-based filtering, sorting, and a clean UI/UX.  
-It is built using modern technologies and follows best practices for maintainable, scalable development.
+FinkiXP is a full-stack web app that helps students easily find and manage past exam tasks — solving the problem of scattered and hard-to-access exam materials by providing a centralized, user-friendly platform for search and organization.
 
 ---
 
